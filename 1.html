@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>For Nikita 💖</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+  height:100vh;
+  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+}
+
+/* Passcode Screen */
+#lockScreen{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  gap:30px;
+}
+
+#lockScreen h2{
+  color:#ff4d6d;
+  font-size:26px;
+}
+
+#passInput{
+  padding:14px;
+  font-size:20px;
+  border-radius:15px;
+  border:2px solid #ff4d6d;
+  text-align:center;
+  width:180px;
+  outline:none;
+}
+
+/* Unlock Button */
+#unlockBtn{
+  padding:14px 35px;
+  border:none;
+  border-radius:30px;
+  background:#ff4d6d;
+  color:white;
+  cursor:pointer;
+  font-size:18px;
+  transition:0.3s;
+}
+
+#unlockBtn:hover{
+  background:#ff2e5f;
+}
+
+/* Main Card */
+.card{
+  display:none;
+  background:white;
+  width:90%;
+  max-width:380px;
+  padding:25px;
+  border-radius:20px;
+  text-align:center;
+  animation:fadeIn 1.2s ease forwards;
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:scale(0.8);}
+  to{opacity:1; transform:scale(1);}
+}
+
+h1{
+  color:#ff4d6d;
+  margin-bottom:10px;
+}
+
+p{
+  color:#444;
+  line-height:1.6;
+  font-size:16px;
+}
+
+.buttons{
+  margin-top:25px;
+  position:relative;
+  height:120px;
+}
+
+/* YES & NO buttons only */
+.buttons button{
+  padding:12px 22px;
+  font-size:16px;
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+  position:absolute;
+  transition:0.2s;
+}
+
+#yesBtn{
+  background:#ff4d6d;
+  color:white;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:0;
+}
+
+#noBtn{
+  background:#ccc;
+  color:#333;
+  left:10%;
+  top:0;
+}
+
+/* Success Message */
+#message{
+  display:none;
+  margin-top:15px;
+  font-size:18px;
+  font-weight:bold;
+  color:#ff4d6d;
+}
+
+/* Image Popup */
+#popup{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.85);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  padding:20px;
+}
+
+#popup img{
+  width:90%;
+  max-width:350px;
+  border-radius:15px;
+}
+
+#closePopup{
+  margin-top:20px;
+  padding:10px 25px;
+  border:none;
+  border-radius:25px;
+  background:white;
+  cursor:pointer;
+  font-size:16px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Passcode Screen -->
+<div id="lockScreen">
+  <h2>Enter Passcode 💌</h2>
+  <input type="password" id="passInput" maxlength="4" placeholder="****">
+  <button id="unlockBtn">Unlock</button>
+</div>
+
+<!-- Main Valentine Card -->
+<div class="card" id="mainCard">
+  <h1>Nikita 💖</h1>
+  <p>
+    I didn’t want to just text something ordinary.<br><br>
+    You genuinely make my world lighter.  
+    I like the way you exist.  
+    I like the way you make things feel different.  
+    And I’d really like to see where this could go… with you.
+  </p>
+
+  <div class="buttons">
+    <button id="noBtn">No 🙄</button>
+    <button id="yesBtn">Yes 💕</button>
+  </div>
+
+  <div id="message">
+    You just made my whole day ❤️
+  </div>
+</div>
+
+<!-- Image Popup -->
+<div id="popup">
+  <img src="https://drive.google.com/uc?export=view&id=1tOLlOKIynsvs95mbgY4FxJniXjweILXC" alt="Special Memory">
+  <button id="closePopup">Close</button>
+</div>
+
+<script>
+const unlockBtn = document.getElementById("unlockBtn");
+const passInput = document.getElementById("passInput");
+const lockScreen = document.getElementById("lockScreen");
+const mainCard = document.getElementById("mainCard");
+
+unlockBtn.addEventListener("click",()=>{
+  if(passInput.value === "8586"){
+    lockScreen.style.display="none";
+    mainCard.style.display="block";
+  }else{
+    alert("Wrong passcode 💔");
+  }
+});
+
+/* No Button Escape */
+const noBtn = document.getElementById("noBtn");
+
+function moveButton(){
+  const x = Math.random()*200;
+  const y = Math.random()*100;
+  noBtn.style.transform=`translate(${x}px,${y}px)`;
+}
+
+noBtn.addEventListener("mouseover",moveButton);
+noBtn.addEventListener("touchstart",moveButton);
+
+/* Yes Button Action */
+const yesBtn = document.getElementById("yesBtn");
+const message = document.getElementById("message");
+const popup = document.getElementById("popup");
+const closePopup = document.getElementById("closePopup");
+
+yesBtn.addEventListener("click",()=>{
+  message.style.display="block";
+  popup.style.display="flex";
+});
+
+closePopup.addEventListener("click",()=>{
+  popup.style.display="none";
+});
+</script>
+
+</body>
+</html>
