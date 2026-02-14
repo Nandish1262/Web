@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>For Nikita 💖</title>
 
+<!-- Cute Font -->
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
 <style>
 *{
   margin:0;
@@ -42,6 +45,19 @@ body{
     transform:translateY(-10vh) scale(1.2);
     opacity:0;
   }
+}
+
+/* Big Valentine Title */
+#mainTitle{
+  position:absolute;
+  top:40px;
+  text-align:center;
+  width:100%;
+  font-family:'Pacifico', cursive;
+  font-size:32px;
+  color:white;
+  text-shadow:0 3px 8px rgba(0,0,0,0.3);
+  z-index:3;
 }
 
 /* Passcode Screen */
@@ -192,8 +208,25 @@ p{
 
 <body>
 
-<!-- Floating Hearts Container -->
-<div id="hearts"></div>
+<!-- Floating Hearts -->
+<script>
+function createHeart(){
+  const heart=document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML="💗";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.fontSize=(Math.random()*20+15)+"px";
+  heart.style.animationDuration=(Math.random()*3+4)+"s";
+  document.body.appendChild(heart);
+  setTimeout(()=>{heart.remove();},6000);
+}
+setInterval(createHeart,400);
+</script>
+
+<!-- Big Title -->
+<div id="mainTitle">
+  Will you be my Valentine? 💘
+</div>
 
 <!-- Passcode Screen -->
 <div id="lockScreen">
@@ -202,7 +235,7 @@ p{
   <button id="unlockBtn">Unlock</button>
 </div>
 
-<!-- Main Valentine Card -->
+<!-- Main Card -->
 <div class="card" id="mainCard">
   <h1>Nikita 💖</h1>
   <p>
@@ -230,27 +263,14 @@ p{
 </div>
 
 <script>
-// Floating hearts generator
-function createHeart(){
-  const heart = document.createElement("div");
-  heart.classList.add("heart");
-  heart.innerHTML = "💗";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = (Math.random()*20 + 15) + "px";
-  heart.style.animationDuration = (Math.random()*3 + 4) + "s";
-  document.body.appendChild(heart);
-  setTimeout(()=>{heart.remove();},6000);
-}
-setInterval(createHeart,400);
-
 // Unlock logic
-const unlockBtn = document.getElementById("unlockBtn");
-const passInput = document.getElementById("passInput");
-const lockScreen = document.getElementById("lockScreen");
-const mainCard = document.getElementById("mainCard");
+const unlockBtn=document.getElementById("unlockBtn");
+const passInput=document.getElementById("passInput");
+const lockScreen=document.getElementById("lockScreen");
+const mainCard=document.getElementById("mainCard");
 
 unlockBtn.addEventListener("click",()=>{
-  if(passInput.value === "8586"){
+  if(passInput.value==="8586"){
     lockScreen.style.display="none";
     mainCard.style.display="block";
   }else{
@@ -259,19 +279,19 @@ unlockBtn.addEventListener("click",()=>{
 });
 
 // No button escape
-const noBtn = document.getElementById("noBtn");
+const noBtn=document.getElementById("noBtn");
 function moveButton(){
-  const x = Math.random()*200;
-  const y = Math.random()*100;
+  const x=Math.random()*200;
+  const y=Math.random()*100;
   noBtn.style.transform=`translate(${x}px,${y}px)`;
 }
 noBtn.addEventListener("mouseover",moveButton);
 noBtn.addEventListener("touchstart",moveButton);
 
-// Confetti burst
+// Confetti
 function launchConfetti(){
   for(let i=0;i<80;i++){
-    const conf = document.createElement("div");
+    const conf=document.createElement("div");
     conf.style.position="fixed";
     conf.style.width="8px";
     conf.style.height="8px";
@@ -292,10 +312,10 @@ function launchConfetti(){
 }
 
 // Yes logic
-const yesBtn = document.getElementById("yesBtn");
-const message = document.getElementById("message");
-const popup = document.getElementById("popup");
-const closePopup = document.getElementById("closePopup");
+const yesBtn=document.getElementById("yesBtn");
+const message=document.getElementById("message");
+const popup=document.getElementById("popup");
+const closePopup=document.getElementById("closePopup");
 
 yesBtn.addEventListener("click",()=>{
   message.style.display="block";
